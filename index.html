@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViePOS - Cổng Tài Liệu Nghiệp Vụ & Thiết Kế Hệ Thống</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0,0,0,0.06);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        [data-theme="dark"] code {
+            background: rgba(255,255,255,0.1);
+            color: #93c5fd;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#overview" class="brand">
+                <div class="brand-icon">V</div>
+                <div>
+                    <div class="brand-title">ViePOS Docs</div>
+                    <div class="brand-sub">Hệ Thống Vận Hành Think Lặng</div>
+                </div>
+            </a>
+            <div style="display: flex; gap: 6px; align-items: center; margin-top: 6px;">
+                <span class="badge-ver">Phiên bản 2.0</span>
+                <span style="font-size: 10px; color: #64748b;">Hệ thống chính thức</span>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" class="search-input" id="docSearchInput" placeholder="Tìm kiếm nội dung, BR, chức năng..." />
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">Tổng quan</div>
+            <a href="#overview" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                <span>Thông tin hệ thống</span>
+            </a>
+
+            <div class="nav-section-title">Nội dung nghiệp vụ</div>
+            <a href="#chapter1" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <span>Chương 1: Khảo sát thực tế & As-Is</span>
+            </a>
+            <a href="#chapter2" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <span>Chương 2: Mô hình kinh doanh & ROI</span>
+                <span class="nav-badge">1.140%</span>
+            </a>
+            <a href="#chapter3" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <span>Chương 3: Quy tắc & Use Cases</span>
+                <span class="nav-badge">17 BR</span>
+            </a>
+            <a href="#chapter4" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Chương 4: Yêu cầu FR, NFR & CRUD</span>
+            </a>
+            <a href="#chapter5" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <span>Chương 5: Luồng dữ liệu DFD & UML</span>
+            </a>
+            <a href="#chapter6" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span>Chương 6: Giao diện UI/UX & Sitemap</span>
+            </a>
+            <a href="#chapter7" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                <span>Chương 7: Tích hợp VietQR & In nhiệt</span>
+            </a>
+            <a href="#chapter8" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>Chương 8: Kịch bản kiểm thử</span>
+                <span class="nav-badge">96.8%</span>
+            </a>
+            <a href="#chapter9" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Chương 9: Triển khai & SOP Vận hành</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div style="display: flex; align-items: center; gap: 14px;">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <div class="breadcrumbs">
+                    <a href="#overview">ViePOS Docs</a>
+                    <span>/</span>
+                    <span class="current" id="breadcrumbCurrent">Tổng quan hệ thống</span>
+                </div>
+            </div>
+
+            <div class="topbar-actions">
+                <button class="btn-icon" id="themeToggle" title="Chuyển chế độ Sáng/Tối">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="btn-action btn-primary" onclick="window.print()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>In tài liệu</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <main class="content-area">
+
+            <!-- HERO OVERVIEW -->
+            <section class="doc-hero" id="overview">
+                <span class="doc-hero-badge">ViePOS Product Specification</span>
+                <h1 class="doc-hero-title">Hệ Thống Quản Lý Vận Hành ViePOS</h1>
+                <p class="doc-hero-subtitle">
+                    Giải pháp công nghệ chuyên biệt tối ưu hiệu suất mặt bằng và quản lý thời gian sử dụng chỗ ngồi 
+                    cho mô hình <strong>Quán Cà phê Học bài & Không gian Làm việc Think Lặng</strong>.
+                </p>
+
+                <div class="hero-stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-val">+35.4%</span>
+                        <span class="stat-label">Tăng trưởng doanh thu ngày</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">+19.5 Tr</span>
+                        <span class="stat-label">Lợi nhuận gộp tăng thêm / tháng</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">10 Ngày</span>
+                        <span class="stat-label">Thời gian hoàn vốn đầu tư</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">1.140%</span>
+                        <span class="stat-label">Tỷ suất ROI năm đầu</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-val">96.8%</span>
+                        <span class="stat-label">Tỷ lệ Test Cases Passed</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- METADATA TABLE -->
+            <div class="doc-section">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Tổng quan dự án</span>
+                        <h2 class="section-title">Thông Tin Dự Án</h2>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <tbody>
+                            <tr>
+                                <th style="width: 250px;">Tên giải pháp</th>
+                                <td><strong>Hệ thống hỗ trợ quản lý vận hành ViePOS</strong> (F&B & Study Space Management System)</td>
+                            </tr>
+                            <tr>
+                                <th>Đơn vị ứng dụng</th>
+                                <td><strong>Quán Cà phê Think Lặng</strong> (Mô hình Study Hub & Coworking Cafe)</td>
+                            </tr>
+                            <tr>
+                                <th>Phiên bản phát hành</th>
+                                <td><span class="pill pill-primary">Phiên bản 2.0</span></td>
+                            </tr>
+                            <tr>
+                                <th>Mục tiêu cốt lõi</th>
+                                <td>Tự động hóa kiểm soát phiên thời gian thực, tối ưu hóa vòng quay bàn, quản lý tồn kho tức thời và giảm áp lực vận hành cho nhân sự quầy.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout callout-info" style="margin-top: 20px;">
+                    <strong>Bối cảnh bài toán:</strong>
+                    Trong ngành F&B, các phần mềm POS truyền thống đóng gói sẵn chủ yếu phục vụ quán ăn hoặc trà sữa mang đi, không hỗ trợ cơ chế 
+                    <em>định danh và đếm ngược thời gian phiên ngồi thực tế</em>. Tại quán Think Lặng, chính sách đồng giá 35.000 VNĐ ngồi vô hạn trước đây khiến khách chiếm chỗ từ 6 đến 9 tiếng, 
+                    dẫn đến tình trạng quán luôn kín chỗ nhưng doanh thu thấp, đồng thời nhân viên duy nhất trong ca chịu áp lực lớn khi vừa bán hàng, theo dõi khách vừa kiểm đếm thủ công.
+                </div>
+            </div>
+
+            <!-- CHƯƠNG 1 -->
+            <section class="doc-section" id="chapter1">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 1</span>
+                        <h2 class="section-title">Khảo Sát Thực Tế & Mô Hình Hiện Tại (As-Is)</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">1.1. Mô hình hoạt động quán Think Lặng</h3>
+                <p>Think Lặng là không gian học tập và làm việc tập trung cao độ, phục vụ 3 nhóm đối tượng chính:</p>
+                <ul style="margin-left: 20px; margin-bottom: 16px; color: var(--text-sub);">
+                    <li><strong>Sinh viên (60%):</strong> Nhu cầu ôn thi, làm bài tập nhóm nhỏ, chạy deadline, thời lượng ngồi 3 - 4 giờ.</li>
+                    <li><strong>Freelancers & Remote Workers (30%):</strong> Cần chỗ ngồi dài hạn 6 - 8 tiếng, wifi mạnh, ổ điện từng bàn, không gian yên lặng.</li>
+                    <li><strong>Khách đọc sách & Nghiên cứu (10%):</strong> Đòi hỏi văn hóa tôn trọng sự yên lặng tuyệt đối.</li>
+                </ul>
+                <p><em>Đặc thù cốt lõi:</em> Mô hình kinh doanh không chỉ bán đồ uống giải khát mà <strong>bán giải pháp thời gian sử dụng không gian làm việc kèm thức uống</strong>.</p>
+
+                <h3 class="sub-title">1.2. Mô hình vận hành ban đầu (As-Is)</h3>
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Tiêu chí</th>
+                                <th>Vận hành ban đầu (As-Is)</th>
+                                <th>Hạn chế & Rủi ro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Chính sách giá</strong></td>
+                                <td>Đồng giá 35.000 VNĐ cho toàn bộ menu đồ uống</td>
+                                <td>Khách được ngồi không giới hạn thời gian (vô hạn giờ)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cơ cấu nhân sự</strong></td>
+                                <td>Chỉ duy nhất 01 nhân viên / ca làm việc</td>
+                                <td>Quá tải: vừa nhận order, pha chế, thu tiền, đối soát và kiểm kho</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phần mềm POS cũ</strong></td>
+                                <td>Sử dụng phần mềm đóng gói Sapo</td>
+                                <td>Không hỗ trợ quản lý thời gian ngồi, không tự động khóa món khi hết hàng tồn thực tế</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Thanh toán</strong></td>
+                                <td>Tiền mặt + Chuyển khoản QR tĩnh cá nhân</td>
+                                <td>Nhân viên phải nhìn điện thoại của khách hoặc chụp lại bill; cuối ca phải cộng tay từng giao dịch</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quản lý tồn kho</strong></td>
+                                <td>Đếm chai thủ công cuối ca, báo cáo qua Zalo</td>
+                                <td>Dữ liệu chậm trễ, dễ thất thoát, thường xuyên bán món đã hết trong tủ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">1.3. Phân tích nguyên nhân gốc rễ</h3>
+                <div class="callout callout-danger">
+                    <strong>5 Điểm nghẽn vận hành cần giải quyết:</strong>
+                    <ol style="margin-left: 20px; margin-top: 6px;">
+                        <li><strong>Doanh thu không tương xứng với thời gian chiếm chỗ:</strong> Khách ngồi 6 - 9 tiếng chỉ trả 35k; giờ cao điểm (13:00 - 18:00) khách mới đến không có chỗ, làm giảm sút nghiêm trọng vòng quay bàn (Seat Turnover).</li>
+                        <li><strong>Thiếu kiểm soát tồn kho tức thời:</strong> Nhân viên order và nhận tiền xong mới phát hiện hết nước, phải đổi món hoặc hoàn tiền thủ công.</li>
+                        <li><strong>Đối soát chuyển khoản tốn nhiều thời gian và rủi ro:</strong> Chuyển vào tài khoản cá nhân, đối soát cuối ca mất 30 - 45 phút.</li>
+                        <li><strong>Quản lý kho qua Zalo rời rạc:</strong> Thiếu liên kết giữa lượng hàng xuất bán trên POS và số lượng tồn thực tế trong tủ.</li>
+                        <li><strong>Áp lực công việc dồn lên 1 nhân sự:</strong> Khi quán đông, nhân viên dễ thao tác nhầm lẫn và giảm chất lượng phục vụ.</li>
+                    </ol>
+                </div>
+
+                <h3 class="sub-title">1.4. Sơ đồ quy trình hiện tại (As-Is BPMN)</h3>
+                <p>Sơ đồ quy trình bán hàng và phục vụ ban đầu tại quán:</p>
+                
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ BPMN - Quy trình vận hành ban đầu (As-Is)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/bpmn_as_is.png', 'Sơ đồ BPMN - Quy trình vận hành ban đầu (As-Is)')">
+            <img src="assets/img/bpmn_as_is.png" alt="Sơ đồ BPMN - Quy trình vận hành ban đầu (As-Is)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/bpmn_as_is.png', 'Sơ đồ BPMN - Quy trình vận hành ban đầu (As-Is)')">Phóng to</button>
+        </div>
+    </div>
+    
+            </section>
+
+            <!-- CHƯƠNG 2 -->
+            <section class="doc-section" id="chapter2">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 2</span>
+                        <h2 class="section-title">Mô Hình Kinh Doanh & Đề Xuất Giải Pháp (To-Be)</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">2.1. Mô hình phân tầng thời gian dịch vụ</h3>
+                <p>Tái cấu trúc chính sách giá và thời lượng sử dụng thành 3 gói rõ ràng:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 20px 0;">
+                    <div style="background: var(--bg-surface); border: 2px solid var(--border-color); border-radius: var(--radius-md); padding: 20px;">
+                        <span class="pill pill-info">Gói 1</span>
+                        <h4 style="font-size: 18px; margin: 10px 0 6px;">GÓI MANG ĐI (Takeaway)</h4>
+                        <div style="font-size: 20px; font-weight: 800; color: var(--info); margin-bottom: 10px;">25.000 - 30.000 đ</div>
+                        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 0;">Khách mua nước đem đi, không sử dụng chỗ ngồi và không cấp thẻ bàn.</p>
+                    </div>
+
+                    <div style="background: var(--primary-light); border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 20px; position: relative;">
+                        <span class="pill pill-primary" style="background: var(--primary); color: #fff;">Gói Phổ Biến (70% KH)</span>
+                        <h4 style="font-size: 18px; margin: 10px 0 6px;">GÓI 4 GIỜ (Standard)</h4>
+                        <div style="font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 10px;">35.000 VNĐ</div>
+                        <p style="font-size: 13.5px; color: var(--text-sub); margin-bottom: 0;">Bao gồm 01 phần nước đóng chai. Đếm ngược 4 giờ từ khi kích hoạt thẻ bàn. Có ân hạn 15 phút.</p>
+                    </div>
+
+                    <div style="background: var(--bg-surface); border: 2px solid #d97706; border-radius: var(--radius-md); padding: 20px;">
+                        <span class="pill pill-warning">Gói Freelancer (30% KH)</span>
+                        <h4 style="font-size: 18px; margin: 10px 0 6px;">GÓI CẢ NGÀY (Full-day Pass)</h4>
+                        <div style="font-size: 24px; font-weight: 800; color: #d97706; margin-bottom: 10px;">45.000 VNĐ</div>
+                        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 0;">Bao gồm 01 phần nước đóng chai. Khách ngồi không giới hạn thời gian trong ngày làm việc.</p>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">2.2. Business Model Canvas (BMC)</h3>
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 200px;">Khối BMC</th>
+                                <th>Chi tiết mô hình vận hành ViePOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Phân khúc khách hàng</strong></td>
+                                <td>- <strong>Sinh viên (60%):</strong> Học ôn thi, làm tiểu luận, học nhóm; thời lượng ngồi 3 - 4 tiếng.<br>- <strong>Freelancers & Remote Workers (30%):</strong> Ngồi dài hạn 6 - 8 tiếng, yêu cầu wifi mạnh và yên tĩnh.<br>- <strong>Khách đọc sách & Nghiên cứu (10%):</strong> Cần không gian tĩnh lặng cao độ.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Đề xuất giá trị</strong></td>
+                                <td>- <strong>Tĩnh lặng cam kết:</strong> Triệt tiêu tiếng ồn của quán cà phê giải trí thông thường.<br>- <strong>Gói dịch vụ minh bạch:</strong> Gói 4 giờ (35k) siêu tiết kiệm; Gói Cả ngày (45k) thoải mái cho người làm việc tự do.<br>- <strong>Tiện ích tối ưu:</strong> Bàn ghế chuẩn, ổ cắm từng vị trí, wifi ổn định.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Kênh phân phối</strong></td>
+                                <td>Trực tiếp tại quầy quán; Fanpage Facebook, TikTok, Google Maps địa phương.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4. Quan hệ khách hàng</strong></td>
+                                <td>Mô hình tự phục vụ văn minh (Self-service with smart cards); giữ không gian chung qua Quiet rules.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5. Dòng doanh thu</strong></td>
+                                <td>- Bán gói kèm đồ uống: Gói 4h (35k) & Gói Cả ngày (45k).<br>- Bán đồ uống thêm trong phiên, bánh ngọt, snack.<br>- Bán đồ uống mang đi (Takeaway).<br>- Phụ thu quá hạn giờ (Overtime charge: 10k nâng cấp lên Cả ngày).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>6. Nguồn lực chính</strong></td>
+                                <td>Phần mềm vận hành ViePOS quản lý phiên và kho tức thời; Mặt bằng 30 chỗ ngồi, 30 thẻ số định danh; Nhân sự quầy đa nhiệm.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>7. Hoạt động chính</strong></td>
+                                <td>Vận hành bán hàng và kích hoạt phiên; Theo dõi cảnh báo thời lượng, hỗ trợ khách gia hạn/trả thẻ; Kiểm soát tồn kho thành phẩm.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8. Đối tác chính</strong></td>
+                                <td>Đơn vị cung ứng đồ uống đóng chai chất lượng; Hạ tầng đám mây (Supabase, Vercel); Đơn vị thanh toán VietQR / Napas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>9. Cơ cấu chi phí</strong></td>
+                                <td>Chi phí cố định: Mặt bằng, tiền điện (máy lạnh chạy liên tục), internet; Chi phí biến đổi: COGS nước chai (~12.000đ/chai); Chi phí vận hành máy chủ ViePOS (1.100.000đ/tháng).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">2.3. Phân tích tài chính & ROI</h3>
+                
+                <!-- INTERACTIVE ROI SIMULATOR -->
+                <div class="roi-widget">
+                    <div class="roi-widget-title">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                        <span>Bộ Công Cụ Mô Phỏng Hiệu Quả Đầu Tư ViePOS (Live ROI Simulator)</span>
+                    </div>
+                    <div class="roi-widget-desc">
+                        Điều chỉnh các tham số dưới đây để xem sự thay đổi doanh thu, vòng quay bàn, lợi nhuận gộp và thời gian hoàn vốn theo thời gian thực:
+                    </div>
+
+                    <div class="roi-controls">
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>Số chỗ ngồi (Ghế/Thẻ bàn):</span>
+                                <span class="val" id="valSeats">30 ghế</span>
+                            </div>
+                            <input type="range" class="control-slider" id="sliderSeats" min="15" max="60" value="30" step="1">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>Thời gian mở cửa (Giờ/ngày):</span>
+                                <span class="val" id="valHours">15h / ngày</span>
+                            </div>
+                            <input type="range" class="control-slider" id="sliderHours" min="10" max="24" value="15" step="1">
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>Tỷ lệ Gói 4 Giờ vs Cả ngày:</span>
+                                <span class="val" id="valRatio4h">70% 4h / 30% Cả ngày</span>
+                            </div>
+                            <input type="range" class="control-slider" id="sliderRatio4h" min="30" max="95" value="70" step="5">
+                        </div>
+                    </div>
+
+                    <div class="roi-results-grid">
+                        <div class="roi-res-box">
+                            <div class="roi-res-label">Doanh thu cũ (As-Is)</div>
+                            <div class="roi-res-val" id="resOldRev" style="color: #94a3b8;">2.415.000 đ / ngày</div>
+                        </div>
+                        <div class="roi-res-box">
+                            <div class="roi-res-label">Doanh thu mới (ViePOS)</div>
+                            <div class="roi-res-val" id="resNewRev">3.270.000 đ / ngày</div>
+                        </div>
+                        <div class="roi-res-box">
+                            <div class="roi-res-label">Lợi nhuận gộp tăng thêm</div>
+                            <div class="roi-res-val highlight" id="resDeltaProfit">+19.530.000 đ / tháng</div>
+                        </div>
+                        <div class="roi-res-box">
+                            <div class="roi-res-label">Thời gian hoàn vốn đầu tư</div>
+                            <div class="roi-res-val" id="resPayback">~10 ngày</div>
+                        </div>
+                        <div class="roi-res-box">
+                            <div class="roi-res-label">Tỷ suất ROI năm đầu</div>
+                            <div class="roi-res-val highlight" id="resROI">1.140%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">2.4. Sơ đồ quy trình đề xuất (To-Be BPMN)</h3>
+                <p>Quy trình vận hành đề xuất với bộ đếm giờ tự động và đối soát tức thời:</p>
+                
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ BPMN - Quy trình vận hành đề xuất (To-Be)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/bpmn_to_be.png', 'Sơ đồ BPMN - Quy trình vận hành đề xuất (To-Be)')">
+            <img src="assets/img/bpmn_to_be.png" alt="Sơ đồ BPMN - Quy trình vận hành đề xuất (To-Be)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/bpmn_to_be.png', 'Sơ đồ BPMN - Quy trình vận hành đề xuất (To-Be)')">Phóng to</button>
+        </div>
+    </div>
+    
+            </section>
+
+            <!-- CHƯƠNG 3 -->
+            <section class="doc-section" id="chapter3">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 3</span>
+                        <h2 class="section-title">Quy Tắc Nghiệp Vụ, User Stories & Sơ Đồ Use Case</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">3.1. Danh mục 17 Quy tắc nghiệp vụ (Business Rules)</h3>
+                <div style="margin-bottom: 12px; display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="brFilterInput" class="search-input" style="max-width: 320px;" placeholder="Lọc mã quy tắc (VD: BR03, Tồn kho, Gói...)" />
+                    <span style="font-size: 13px; color: var(--text-muted);">Hiển thị toàn bộ 17 quy tắc</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">Mã BR</th>
+                                <th style="width: 140px;">Nhóm quy tắc</th>
+                                <th style="width: 200px;">Tên quy tắc</th>
+                                <th>Nội dung ràng buộc nghiệp vụ chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody id="brTableBody">
+                            <tr>
+                                <td><span class="pill pill-primary">BR01</span></td>
+                                <td>Gói dịch vụ</td>
+                                <td><strong>Ràng buộc chọn gói</strong></td>
+                                <td>Mỗi sản phẩm trong đơn hàng bắt buộc phải được định danh 1 gói: Mang đi, Tại chỗ 4 giờ (35k) hoặc Tại chỗ Cả ngày (45k).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR02</span></td>
+                                <td>Phiên sử dụng</td>
+                                <td><strong>Điều kiện mở phiên</strong></td>
+                                <td>Phiên sử dụng của bàn/thẻ chỉ được kích hoạt sau khi đơn hàng được ghi nhận thanh toán thành công.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-warning">BR03</span></td>
+                                <td>Phiên sử dụng</td>
+                                <td><strong>Cảnh báo thời lượng</strong></td>
+                                <td>Với gói 4 giờ, hệ thống kích hoạt bộ đếm ngược; đổi trạng thái cảnh báo khi thời gian còn &le; 15 phút (màu vàng) và khi chạm mốc 00:00:00 (màu đỏ).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR04</span></td>
+                                <td>Phiên sử dụng</td>
+                                <td><strong>Giải phóng thẻ</strong></td>
+                                <td>Khi khách hoàn tất phiên, nhân viên bấm thao tác "Trả thẻ" trên phần mềm để thẻ chuyển về trạng thái Trống (Available).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-danger">BR05</span></td>
+                                <td>Phiên sử dụng</td>
+                                <td><strong>Độc quyền thẻ</strong></td>
+                                <td>Một thẻ đang ở trạng thái <code>Đang sử dụng (IN_USE)</code> tuyệt đối không được gán cho đơn hàng mới khác.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR06</span></td>
+                                <td>Quản lý đơn hàng</td>
+                                <td><strong>Hiển thị theo tồn kho</strong></td>
+                                <td>Màn hình bán hàng POS chỉ cho phép thêm vào đơn các món có số lượng tồn kho khả dụng &gt; 0.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR07</span></td>
+                                <td>Quản lý đơn hàng</td>
+                                <td><strong>Chặn sửa sau thanh toán</strong></td>
+                                <td>Nhân viên chỉ được sửa/xóa món trước khi thanh toán. Sau khi thanh toán, đơn hàng chuyển sang chế độ chỉ đọc (Read-only).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-danger">BR08</span></td>
+                                <td>Quản lý đơn hàng</td>
+                                <td><strong>Quyền hủy đơn</strong></td>
+                                <td>Đơn hàng đã thanh toán chỉ có tài khoản Quản lý (Admin) mới có quyền Hủy, bắt buộc phải nhập lý do hủy vào hệ thống.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR09</span></td>
+                                <td>Quản lý đơn hàng</td>
+                                <td><strong>Tối thiểu sản phẩm</strong></td>
+                                <td>Mỗi đơn hàng phải chứa tối thiểu 01 sản phẩm trước khi chuyển sang bước thanh toán.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR10</span></td>
+                                <td>Quản lý đơn hàng</td>
+                                <td><strong>Phương thức thanh toán</strong></td>
+                                <td>Hệ thống chấp nhận hai hình thức: Tiền mặt (Cash) và Chuyển khoản (Bank Transfer).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-info">BR11</span></td>
+                                <td>Quản lý tồn kho</td>
+                                <td><strong>Trừ tồn tự động</strong></td>
+                                <td>Tồn kho của sản phẩm được trừ tự động ngay lập tức tại thời điểm đơn hàng xác nhận thanh toán thành công.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-warning">BR12</span></td>
+                                <td>Quản lý tồn kho</td>
+                                <td><strong>Cảnh báo ngưỡng tồn</strong></td>
+                                <td>Khi số lượng tồn kho &le; mức cảnh báo tối thiểu (<code>minimum_stock</code>), hệ thống đổi nhãn sang <code>Cảnh báo tồn thấp</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-danger">BR13</span></td>
+                                <td>Quản lý tồn kho</td>
+                                <td><strong>Tự động khóa bán</strong></td>
+                                <td>Khi tồn kho bằng 0, hệ thống tự động gắn cờ <code>is_out_of_stock = true</code> và vô hiệu hóa nút chọn món trên POS.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR14</span></td>
+                                <td>Quản lý tồn kho</td>
+                                <td><strong>Phân quyền nhập/xuất</strong></td>
+                                <td>Chỉ tài khoản Quản lý mới có quyền tạo phiếu nhập kho, xuất kho và điều chỉnh kiểm kê tồn kho.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-info">BR15</span></td>
+                                <td>Báo cáo & Ca</td>
+                                <td><strong>Đồng bộ thời gian thực</strong></td>
+                                <td>Dữ liệu bán hàng, doanh thu và biến động kho phải được đồng bộ theo thời gian thực (Real-time).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR16</span></td>
+                                <td>Báo cáo & Ca</td>
+                                <td><strong>Thống kê theo ca</strong></td>
+                                <td>Dữ liệu ca làm việc được tổng hợp theo tài khoản nhân viên tạo đơn phục vụ bàn giao cuối ca.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill pill-primary">BR17</span></td>
+                                <td>Phân quyền</td>
+                                <td><strong>Giới hạn xem báo cáo</strong></td>
+                                <td>Nhân viên chỉ được xem doanh thu ca hiện tại của chính mình; Quản lý/Chủ quán có quyền xem toàn bộ báo cáo doanh thu cửa hàng.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">3.2. Hệ thống User Stories & Sơ Đồ Use Case Theo Từng Phân Hệ</h3>
+
+                <!-- PHÂN HỆ 1: BÁN HÀNG & POS -->
+                <div style="margin: 28px 0;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--primary);">Phân hệ 1: Quản lý Bán hàng & Phiên dịch vụ (POS & Session)</h4>
+                        <span class="pill pill-primary">Use Case Bán hàng</span>
+                    </div>
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ Use Case - Bán hàng POS & Quản lý phiên</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/usecase_pos.png', 'Sơ đồ Use Case - Bán hàng POS & Quản lý phiên')">
+            <img src="assets/img/usecase_pos.png" alt="Sơ đồ Use Case - Bán hàng POS & Quản lý phiên" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/usecase_pos.png', 'Sơ đồ Use Case - Bán hàng POS & Quản lý phiên')">Phóng to</button>
+        </div>
+    </div>
+    
+
+                    <div class="story-card">
+                        <div class="story-header">
+                            <span class="story-id">US-POS-02</span>
+                            <span class="story-role">Vai trò: Nhân viên quầy</span>
+                        </div>
+                        <div class="story-text">
+                            <strong>Mục tiêu:</strong> Tôi muốn chọn gói dịch vụ (Mang đi, 4 giờ, Cả ngày) khi click chọn món.<br>
+                            <strong>Lợi ích:</strong> Để giá bán và quy tắc thời gian được áp dụng chính xác theo nhu cầu của khách.
+                        </div>
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 1: Chọn gói mang đi (Takeaway)</span>
+            <span class="pill pill-primary">Happy Path</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Nhân viên nhấn chọn một sản phẩm (VD: Trà Đào).</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Popup cấu hình món hiển thị và nhân viên bấm chọn "Mang đi".</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống gán giá mang đi (25.000 VNĐ), ẩn phần cấu hình thời gian sử dụng.</span>
+            </div>
+        </div>
+    </div>
+    
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 2: Chọn gói tại chỗ 4 giờ (Standard)</span>
+            <span class="pill pill-primary">Happy Path</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Nhân viên nhấn chọn một sản phẩm đồ uống đóng chai.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Nhân viên chọn tab "Tại chỗ" &rarr; chọn gói "4 giờ".</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống gán giá gói 35.000 VNĐ, bật cờ yêu cầu gán thẻ bàn sau khi hoàn tất thanh toán.</span>
+            </div>
+        </div>
+    </div>
+    
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 3: Chọn gói tại chỗ Cả ngày (Full-day Pass)</span>
+            <span class="pill pill-primary">Happy Path</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Nhân viên nhấn chọn một sản phẩm đồ uống.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Nhân viên chọn "Tại chỗ" &rarr; chọn "Cả ngày".</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống gán giá gói 45.000 VNĐ, đánh dấu phiên không giới hạn giờ kết thúc trong ngày.</span>
+            </div>
+        </div>
+    </div>
+    
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-header">
+                            <span class="story-id">US-SES-01</span>
+                            <span class="story-role">Vai trò: Nhân viên quầy</span>
+                        </div>
+                        <div class="story-text">
+                            <strong>Mục tiêu:</strong> Tôi muốn gán thẻ số bàn cho đơn hàng sau khi thanh toán.<br>
+                            <strong>Lợi ích:</strong> Để kích hoạt phiên đếm ngược và kiểm soát chỗ ngồi tại quán.
+                        </div>
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản: Gán thẻ bàn trống thành công</span>
+            <span class="pill pill-primary">Happy Path</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Đơn hàng chứa sản phẩm gói 4 giờ đã thanh toán thành công.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Danh sách các thẻ bàn trống hiển thị, nhân viên chọn Thẻ #007 và bấm "Gán thẻ này".</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống chuyển trạng thái Thẻ #007 thành "Đang sử dụng", bắt đầu bộ đếm ngược 04:00:00.</span>
+            </div>
+        </div>
+    </div>
+    
+                    </div>
+                </div>
+
+                <!-- PHÂN HỆ 2: THANH TOÁN & HÓA ĐƠN -->
+                <div style="margin: 28px 0;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--primary);">Phân hệ 2: Quản lý Thanh toán & Hóa đơn (Payments & Invoices)</h4>
+                        <span class="pill pill-primary">Use Case Hóa đơn</span>
+                    </div>
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ Use Case - Quản lý đơn hàng & Thanh toán</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/usecase_invoices.png', 'Sơ đồ Use Case - Quản lý đơn hàng & Thanh toán')">
+            <img src="assets/img/usecase_invoices.png" alt="Sơ đồ Use Case - Quản lý đơn hàng & Thanh toán" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/usecase_invoices.png', 'Sơ đồ Use Case - Quản lý đơn hàng & Thanh toán')">Phóng to</button>
+        </div>
+    </div>
+    
+
+                    <div class="story-card">
+                        <div class="story-header">
+                            <span class="story-id">US-PAY-03</span>
+                            <span class="story-role">Vai trò: Nhân viên quầy</span>
+                        </div>
+                        <div class="story-text">
+                            <strong>Mục tiêu:</strong> Tôi muốn tải ảnh minh chứng chuyển khoản khi khách thanh toán qua ngân hàng.<br>
+                            <strong>Lợi ích:</strong> Để lưu bằng chứng kế toán và phục vụ đối soát doanh thu cuối ca minh bạch.
+                        </div>
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 1: Upload ảnh xác nhận chuyển khoản</span>
+            <span class="pill pill-primary">Happy Path</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Nhân viên chọn phương thức thanh toán "Chuyển khoản".</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Nhân viên chụp/tải ảnh bill chuyển tiền của khách lên hệ thống.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống hiển thị ảnh xem trước, mở khóa nút "Hoàn tất thanh toán".</span>
+            </div>
+        </div>
+    </div>
+    
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 2: Chặn thanh toán khi thiếu ảnh minh chứng</span>
+            <span class="pill pill-primary">Validation Rule</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Nhân viên đang ở màn hình thanh toán chuyển khoản.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Chưa có tệp hình ảnh minh chứng nào được tải lên.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Nút "Hoàn tất thanh toán" bị vô hiệu hóa (disabled), hiển thị thông báo yêu cầu tải bill.</span>
+            </div>
+        </div>
+    </div>
+    
+                    </div>
+                </div>
+
+                <!-- PHÂN HỆ 3: TỒN KHO -->
+                <div style="margin: 28px 0;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--primary);">Phân hệ 3: Quản lý Tồn kho Tự động (Inventory Management)</h4>
+                        <span class="pill pill-primary">Use Case Kho</span>
+                    </div>
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ Use Case - Quản lý kho nguyên liệu & thành phẩm</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/usecase_inventory.png', 'Sơ đồ Use Case - Quản lý kho nguyên liệu & thành phẩm')">
+            <img src="assets/img/usecase_inventory.png" alt="Sơ đồ Use Case - Quản lý kho nguyên liệu & thành phẩm" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/usecase_inventory.png', 'Sơ đồ Use Case - Quản lý kho nguyên liệu & thành phẩm')">Phóng to</button>
+        </div>
+    </div>
+    
+
+                    <div class="story-card">
+                        <div class="story-header">
+                            <span class="story-id">US-INV-02</span>
+                            <span class="story-role">Vai trò: Quản lý / Chủ quán</span>
+                        </div>
+                        <div class="story-text">
+                            <strong>Mục tiêu:</strong> Tôi muốn tồn kho tự động trừ ngay khi xuất bán.<br>
+                            <strong>Lợi ích:</strong> Để số lượng hàng trong kho luôn phản ánh đúng thực tế, không bị lệch sổ sách.
+                        </div>
+
+                        
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 1: Tự động trừ kho khi bán thành công</span>
+            <span class="pill pill-primary">Real-time Sync</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Sản phẩm Cà phê Sữa đang có tồn kho là 15 chai.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Đơn hàng bán 2 chai Cà phê Sữa được thanh toán thành công.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Tồn kho Cà phê Sữa tự động cập nhật về 13 chai; tự động ghi nhận bản ghi biến động vào lịch sử giao dịch kho.</span>
+            </div>
+        </div>
+    </div>
+    
+                    </div>
+                </div>
+
+                <h3 class="sub-title">3.3. Các kịch bản ngoại lệ đặc thù (Edge Cases)</h3>
+
+                <div class="story-card" style="border-left-color: var(--warning);">
+                    <div class="story-header">
+                        <span class="story-id" style="background: var(--warning-light); color: var(--warning);">US-SES-EX01</span>
+                        <span class="story-role">Xử lý quá hạn giờ (Overtime Handling)</span>
+                    </div>
+                    <div class="story-text">
+                        <strong>Mục tiêu:</strong> Tự động phát hiện và tính phụ thu khi khách ngồi quá 4 giờ để đảm bảo doanh thu và công bằng cho khách mới.
+                    </div>
+
+                    
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 1: Ân hạn 15 phút đầu tiên sau hết giờ</span>
+            <span class="pill pill-primary">Grace Period</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Phiên sử dụng 4 giờ của Thẻ #003 đã đếm ngược về 00:00:00.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Thời gian trôi qua trong vòng 15 phút đầu tiên sau khi hết giờ.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống hiển thị nhãn màu Cam "Quá hạn (Ân hạn)", chưa tính phí để nhân viên ra bàn nhắc nhở lịch sự.</span>
+            </div>
+        </div>
+    </div>
+    
+
+                    
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản 2: Tự động tính phụ thu nâng cấp lên Cả ngày</span>
+            <span class="pill pill-primary">Overtime Charge</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Phiên Thẻ #003 quá hạn trên 15 phút và khách có nhu cầu ngồi tiếp tục.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Nhân viên bấm vào thẻ #003 trên màn hình POS &rarr; chọn "Gia hạn / Nâng cấp".</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Hệ thống tự động tính phụ thu 10.000 VNĐ (45.000đ - 35.000đ); sau khi thanh toán, phiên chuyển thành Gói Cả ngày.</span>
+            </div>
+        </div>
+    </div>
+    
+                </div>
+
+                <div class="story-card" style="border-left-color: var(--info);">
+                    <div class="story-header">
+                        <span class="story-id" style="background: var(--info-light); color: var(--info);">US-SES-EX03</span>
+                        <span class="story-role">Khách đổi bàn / Chuyển thẻ định danh</span>
+                    </div>
+                    <div class="story-text">
+                        <strong>Mục tiêu:</strong> Chuyển đổi thông tin phiên sang thẻ bàn mới khi khách đổi chỗ ngồi để số bàn trên POS luôn khớp với thực tế.
+                    </div>
+
+                    
+    <div class="scenario-box">
+        <div class="scenario-header">
+            <span>🔹 Kịch bản: Đổi sang thẻ số bàn mới</span>
+            <span class="pill pill-primary">Table Transfer</span>
+        </div>
+        <div class="scenario-body">
+            <div class="scenario-step">
+                <span class="step-badge step-given">GIVEN</span>
+                <span class="step-content">Thẻ #002 đang chạy phiên 4 giờ (còn 2h10p), khách muốn chuyển chỗ sang Thẻ #018 (đang trống).</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-when">WHEN</span>
+                <span class="step-content">Nhân viên bấm chọn Thẻ #002 &rarr; chọn "Chuyển thẻ" &rarr; chọn Thẻ #018 &rarr; Xác nhận.</span>
+            </div>
+            <div class="scenario-step">
+                <span class="step-badge step-then">THEN</span>
+                <span class="step-content">Thẻ #002 được giải phóng về trạng thái "Trống", Thẻ #018 kế thừa toàn bộ thời gian đếm ngược còn lại.</span>
+            </div>
+        </div>
+    </div>
+    
+                </div>
+            </section>
+
+            <!-- CHƯƠNG 4 -->
+            <section class="doc-section" id="chapter4">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 4</span>
+                        <h2 class="section-title">Đặc Tả Yêu Cầu Hệ Thống (FR, NFR & CRUD)</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">4.1. Yêu cầu chức năng (Functional Requirements - FR)</h3>
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">Mã Yêu cầu</th>
+                                <th style="width: 180px;">Tên chức năng</th>
+                                <th>Mô tả chi tiết yêu cầu hệ thống</th>
+                                <th style="width: 110px;">User Story</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>FR-POS-01</code></td>
+                                <td>Tìm kiếm & Lọc menu</td>
+                                <td>Tìm kiếm nhanh theo tên món, lọc theo danh mục (Cà phê, Trà, Ăn vặt).</td>
+                                <td><code>US-POS-01</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-POS-02</code></td>
+                                <td>Cấu hình gói dịch vụ</td>
+                                <td>Bắt buộc chọn Mang đi, Tại chỗ 4h, hoặc Tại chỗ Cả ngày khi thêm sản phẩm vào đơn.</td>
+                                <td><code>US-POS-02</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-POS-03</code></td>
+                                <td>Thao tác giỏ hàng</td>
+                                <td>Tăng/giảm số lượng, xóa món, áp dụng voucher giảm giá trước khi thanh toán.</td>
+                                <td><code>US-POS-03</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-PAY-01</code></td>
+                                <td>Thanh toán tiền mặt</td>
+                                <td>Nhập tiền khách đưa, hệ thống tự động tính tiền thối trả lại theo thời gian thực.</td>
+                                <td><code>US-PAY-02</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-PAY-02</code></td>
+                                <td>Thanh toán chuyển khoản</td>
+                                <td>Hiển thị mã QR ngân hàng; bắt buộc tải ảnh minh chứng giao dịch để hoàn tất đơn hàng.</td>
+                                <td><code>US-PAY-03</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-SES-01</code></td>
+                                <td>Khởi tạo phiên & Gán thẻ</td>
+                                <td>Sau thanh toán gói tại chỗ, mở giao diện chọn thẻ bàn trống để kích hoạt phiên.</td>
+                                <td><code>US-SES-01</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-SES-02</code></td>
+                                <td>Giám sát phiên Real-time</td>
+                                <td>Danh sách thẻ bàn kèm bộ đếm ngược, phân loại màu trạng thái (Xanh/Vàng/Đỏ).</td>
+                                <td><code>US-SES-03</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-SES-03</code></td>
+                                <td>Kết thúc phiên / Trả thẻ</td>
+                                <td>Nhân viên bấm hoàn tất phiên, hệ thống đổi trạng thái thẻ về khả dụng (Trống).</td>
+                                <td><code>US-SES-04</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-INV-01</code></td>
+                                <td>Trừ kho tự động</td>
+                                <td>Tự động trừ số lượng sản phẩm trong kho khi đơn hàng thanh toán thành công.</td>
+                                <td><code>US-INV-02</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-INV-02</code></td>
+                                <td>Cảnh báo tồn kho</td>
+                                <td>Hiển thị nhãn cảnh báo khi chạm ngưỡng tối thiểu; khóa bán khi tồn kho = 0.</td>
+                                <td><code>US-INV-01</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-INV-03</code></td>
+                                <td>Nhập / Xuất / Điều chỉnh</td>
+                                <td>Cho phép Quản lý lập phiếu nhập hàng, xuất kho hủy hỏng và điều chỉnh kiểm kê.</td>
+                                <td><code>US-INV-03</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-REP-01</code></td>
+                                <td>Báo cáo doanh thu ca</td>
+                                <td>Tổng hợp doanh thu, số đơn, tiền mặt vs chuyển khoản theo nhân sự trong ca.</td>
+                                <td><code>US-REP-01</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-USER-01</code></td>
+                                <td>Xác thực & Đăng nhập</td>
+                                <td>Admin đăng nhập bằng Email/Password; Nhân viên đăng nhập nhanh bằng Mã PIN 6 số.</td>
+                                <td><code>US-USER-03</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>FR-USER-02</code></td>
+                                <td>Phê duyệt nhân viên</td>
+                                <td>Tài khoản nhân viên mới đăng ký phải qua xét duyệt của Quản lý mới được kích hoạt.</td>
+                                <td><code>US-USER-02</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">4.2. Yêu cầu phi chức năng (Non-Functional Requirements - NFR)</h3>
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Tiêu chuẩn NFR</th>
+                                <th>Mô tả yêu cầu kỹ thuật</th>
+                                <th>Chỉ số đo lường (SLA / Metric)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>NFR-PERF-01</code></td>
+                                <td>Thời gian phản hồi tìm kiếm món</td>
+                                <td>&le; 1.0 giây với danh mục 500 món</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-PERF-02</code></td>
+                                <td>Thời gian xử lý tạo đơn và trừ tồn kho</td>
+                                <td>&le; 2.0 giây trong điều kiện mạng tiêu chuẩn</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-PERF-03</code></td>
+                                <td>Độ trễ đồng bộ trạng thái đếm ngược phiên</td>
+                                <td>&le; 5.0 giây theo thời gian thực (Real-time polling / WebSocket)</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-REL-01</code></td>
+                                <td>Tính nhất quán giao dịch (Transaction Rollback)</td>
+                                <td>100% rollback nếu thanh toán thất bại, không trừ kho ảo</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-REL-02</code></td>
+                                <td>Độ chính xác tính toán tiền tệ</td>
+                                <td>Sai số = 0, lưu trữ kiểu Decimal(15,2)</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-SEC-01</code></td>
+                                <td>Mã hóa mật khẩu và mã PIN cá nhân</td>
+                                <td>Băm bằng thuật toán BCrypt Salt</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-SEC-02</code></td>
+                                <td>Bảo vệ Endpoint dữ liệu</td>
+                                <td>100% API quản trị yêu cầu JWT Bearer Token & Row Level Security (RLS)</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-USE-01</code></td>
+                                <td>Tính dễ sử dụng cho nhân viên quầy</td>
+                                <td>Nhân viên mới thao tác thành thạo sau &le; 30 phút đào tạo</td>
+                            </tr>
+                            <tr>
+                                <td><code>NFR-SCA-01</code></td>
+                                <td>Khả năng chịu tải đồng thời</td>
+                                <td>Phục vụ &ge; 50 phiên đồng thời không giật lag</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">4.3. Ma trận phân quyền người dùng (CRUD Matrix)</h3>
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Nghiệp vụ / Phân hệ chức năng</th>
+                                <th style="text-align: center;">Nhân viên quầy (Staff)</th>
+                                <th style="text-align: center;">Quản lý cửa hàng (Admin)</th>
+                                <th style="text-align: center;">Chủ quán (Root Admin)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tạo đơn hàng & Chọn gói giờ</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                            </tr>
+                            <tr>
+                                <td>Hủy đơn hàng sau thanh toán</td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-warning">U, D (Bắt buộc lý do)</span></td>
+                                <td style="text-align: center;"><span class="pill pill-danger">U, D</span></td>
+                            </tr>
+                            <tr>
+                                <td>Kích hoạt & Kết thúc phiên thẻ bàn</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                            </tr>
+                            <tr>
+                                <td>Xem danh sách tồn kho & Cảnh báo</td>
+                                <td style="text-align: center;"><span class="pill pill-info">R (Chỉ xem)</span></td>
+                                <td style="text-align: center;"><span class="pill pill-info">R</span></td>
+                                <td style="text-align: center;"><span class="pill pill-info">R</span></td>
+                            </tr>
+                            <tr>
+                                <td>Tạo phiếu nhập / xuất kho</td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">C, R, U</span></td>
+                            </tr>
+                            <tr>
+                                <td>Điều chỉnh tồn kho kiểm kê</td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-warning">U (Ghi log)</span></td>
+                                <td style="text-align: center;"><span class="pill pill-danger">U</span></td>
+                            </tr>
+                            <tr>
+                                <td>Xem báo cáo doanh thu ca cá nhân</td>
+                                <td style="text-align: center;"><span class="pill pill-info">R</span></td>
+                                <td style="text-align: center;"><span class="pill pill-info">R</span></td>
+                                <td style="text-align: center;"><span class="pill pill-info">R</span></td>
+                            </tr>
+                            <tr>
+                                <td>Xem báo cáo toàn diện & Lợi nhuận</td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-info">R</span></td>
+                                <td style="text-align: center;"><span class="pill pill-primary">R, Export Excel</span></td>
+                            </tr>
+                            <tr>
+                                <td>Cấu hình giá bán theo gói giờ</td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-danger">C, R, U, D</span></td>
+                            </tr>
+                            <tr>
+                                <td>Phê duyệt tài khoản nhân viên mới</td>
+                                <td style="text-align: center;"><span class="pill pill-neutral">-</span></td>
+                                <td style="text-align: center;"><span class="pill pill-warning">U</span></td>
+                                <td style="text-align: center;"><span class="pill pill-danger">U</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- CHƯƠNG 5 (DFD, UML & USER FLOWS - NO CSDL/13 TABLES) -->
+            <section class="doc-section" id="chapter5">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 5</span>
+                        <h2 class="section-title">Mô Hình Hóa Hệ Thống & Luồng Dữ Liệu (DFD & UML)</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">5.1. Sơ đồ luồng dữ liệu (DFD Context & Level 0)</h3>
+                <p>Luồng trao đổi thông tin giữa các tác nhân bên ngoài (Khách hàng, Nhân viên, Chủ quán, Ngân hàng) và hệ thống ViePOS:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ luồng dữ liệu ngữ cảnh (DFD Context)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/dfd_context.png', 'Sơ đồ luồng dữ liệu ngữ cảnh (DFD Context)')">
+            <img src="assets/img/dfd_context.png" alt="Sơ đồ luồng dữ liệu ngữ cảnh (DFD Context)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/dfd_context.png', 'Sơ đồ luồng dữ liệu ngữ cảnh (DFD Context)')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ luồng dữ liệu mức đỉnh (DFD Level 0)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/dfd_level_0.png', 'Sơ đồ luồng dữ liệu mức đỉnh (DFD Level 0)')">
+            <img src="assets/img/dfd_level_0.png" alt="Sơ đồ luồng dữ liệu mức đỉnh (DFD Level 0)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/dfd_level_0.png', 'Sơ đồ luồng dữ liệu mức đỉnh (DFD Level 0)')">Phóng to</button>
+        </div>
+    </div>
+    
+                </div>
+
+                <h3 class="sub-title">5.2. Sơ đồ cấu trúc lớp & Tuần tự (Class & Sequence Diagrams)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ lớp đối tượng (Class Diagram)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/class_diagram.png', 'Sơ đồ lớp đối tượng (Class Diagram)')">
+            <img src="assets/img/class_diagram.png" alt="Sơ đồ lớp đối tượng (Class Diagram)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/class_diagram.png', 'Sơ đồ lớp đối tượng (Class Diagram)')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ tuần tự xử lý đơn hàng (Sequence Diagram)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/seq_sales.png', 'Sơ đồ tuần tự xử lý đơn hàng (Sequence Diagram)')">
+            <img src="assets/img/seq_sales.png" alt="Sơ đồ tuần tự xử lý đơn hàng (Sequence Diagram)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/seq_sales.png', 'Sơ đồ tuần tự xử lý đơn hàng (Sequence Diagram)')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ hoạt động bán hàng (Activity Diagram)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/activity_sales.png', 'Sơ đồ hoạt động bán hàng (Activity Diagram)')">
+            <img src="assets/img/activity_sales.png" alt="Sơ đồ hoạt động bán hàng (Activity Diagram)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/activity_sales.png', 'Sơ đồ hoạt động bán hàng (Activity Diagram)')">Phóng to</button>
+        </div>
+    </div>
+    
+                </div>
+
+                <h3 class="sub-title">5.3. Sơ đồ luồng thao tác người dùng (User Flows)</h3>
+                <p>Chuẩn hóa luồng thao tác trực quan của nhân viên và quản lý:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 User Flow: Lên đơn bán hàng & Gán thẻ bàn</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/uf_staff_pos.png', 'User Flow: Lên đơn bán hàng & Gán thẻ bàn')">
+            <img src="assets/img/uf_staff_pos.png" alt="User Flow: Lên đơn bán hàng & Gán thẻ bàn" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/uf_staff_pos.png', 'User Flow: Lên đơn bán hàng & Gán thẻ bàn')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 User Flow: Kiểm tra trạng thái thẻ bàn</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/uf_staff_tables.png', 'User Flow: Kiểm tra trạng thái thẻ bàn')">
+            <img src="assets/img/uf_staff_tables.png" alt="User Flow: Kiểm tra trạng thái thẻ bàn" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/uf_staff_tables.png', 'User Flow: Kiểm tra trạng thái thẻ bàn')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 User Flow: Quản lý tồn kho hàng hóa</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/uf_admin_inventory.png', 'User Flow: Quản lý tồn kho hàng hóa')">
+            <img src="assets/img/uf_admin_inventory.png" alt="User Flow: Quản lý tồn kho hàng hóa" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/uf_admin_inventory.png', 'User Flow: Quản lý tồn kho hàng hóa')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 User Flow: Xem báo cáo doanh thu & ca</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/uf_admin_reports.png', 'User Flow: Xem báo cáo doanh thu & ca')">
+            <img src="assets/img/uf_admin_reports.png" alt="User Flow: Xem báo cáo doanh thu & ca" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/uf_admin_reports.png', 'User Flow: Xem báo cáo doanh thu & ca')">Phóng to</button>
+        </div>
+    </div>
+    
+                </div>
+            </section>
+
+            <!-- CHƯƠNG 6 -->
+            <section class="doc-section" id="chapter6">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 6</span>
+                        <h2 class="section-title">Thiết Kế Giao Diện Người Dùng (UI/UX)</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">6.1. Quy chuẩn thiết kế (Design System)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 16px 0;">
+                    <div style="border-left: 5px solid #256e05; background: var(--bg-surface); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 24px; height: 24px; background: #256e05; border-radius: 4px;"></div>
+                            <strong>Màu Chủ Đạo (Primary)</strong>
+                        </div>
+                        <div style="margin-top: 6px; font-size: 13px; color: var(--text-sub);">
+                            Mã hex: <code>#256E05</code>. Cảm giác tươi mát, thiên nhiên, tĩnh lặng cho không gian học bài Think Lặng.
+                        </div>
+                    </div>
+
+                    <div style="border-left: 5px solid #d97706; background: var(--bg-surface); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 24px; height: 24px; background: #d97706; border-radius: 4px;"></div>
+                            <strong>Màu Cảnh Báo (Warning)</strong>
+                        </div>
+                        <div style="margin-top: 6px; font-size: 13px; color: var(--text-sub);">
+                            Mã hex: <code>#F2BF3D / #D97706</code>. Áp dụng cho phiên sắp hết giờ (&le; 15 phút) và cảnh báo tồn kho thấp.
+                        </div>
+                    </div>
+
+                    <div style="border-left: 5px solid #dc2626; background: var(--bg-surface); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 24px; height: 24px; background: #dc2626; border-radius: 4px;"></div>
+                            <strong>Màu Báo Động (Danger / Expired)</strong>
+                        </div>
+                        <div style="margin-top: 6px; font-size: 13px; color: var(--text-sub);">
+                            Mã hex: <code>#C42326 / #DC2626</code>. Áp dụng cho phiên đã quá 4 giờ và sản phẩm đã hết hàng tồn kho.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Bảng quy chuẩn màu sắc nhận diện ViePOS</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/design_palette.png', 'Bảng quy chuẩn màu sắc nhận diện ViePOS')">
+            <img src="assets/img/design_palette.png" alt="Bảng quy chuẩn màu sắc nhận diện ViePOS" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/design_palette.png', 'Bảng quy chuẩn màu sắc nhận diện ViePOS')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Quy chuẩn phân định màu trạng thái phiên thời gian</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/design_status_colors.png', 'Quy chuẩn phân định màu trạng thái phiên thời gian')">
+            <img src="assets/img/design_status_colors.png" alt="Quy chuẩn phân định màu trạng thái phiên thời gian" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/design_status_colors.png', 'Quy chuẩn phân định màu trạng thái phiên thời gian')">Phóng to</button>
+        </div>
+    </div>
+    
+                </div>
+
+                <h3 class="sub-title">6.2. Cấu trúc điều hướng hệ thống (Sitemap)</h3>
+                
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Sơ đồ điều hướng hệ thống ViePOS (Sitemap theo phân quyền)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/sitemap_viepos.png', 'Sơ đồ điều hướng hệ thống ViePOS (Sitemap theo phân quyền)')">
+            <img src="assets/img/sitemap_viepos.png" alt="Sơ đồ điều hướng hệ thống ViePOS (Sitemap theo phân quyền)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/sitemap_viepos.png', 'Sơ đồ điều hướng hệ thống ViePOS (Sitemap theo phân quyền)')">Phóng to</button>
+        </div>
+    </div>
+    
+
+                <h3 class="sub-title">6.3. Giao diện Web Portal Quản Trị (Admin App)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Dashboard Quản trị - Thống kê doanh thu thời gian thực</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_admin_dashboard.png', 'Dashboard Quản trị - Thống kê doanh thu thời gian thực')">
+            <img src="assets/img/ui_admin_dashboard.png" alt="Dashboard Quản trị - Thống kê doanh thu thời gian thực" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_admin_dashboard.png', 'Dashboard Quản trị - Thống kê doanh thu thời gian thực')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Quản lý danh sách đơn hàng & Lịch sử</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_admin_orders.png', 'Quản lý danh sách đơn hàng & Lịch sử')">
+            <img src="assets/img/ui_admin_orders.png" alt="Quản lý danh sách đơn hàng & Lịch sử" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_admin_orders.png', 'Quản lý danh sách đơn hàng & Lịch sử')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Quản lý danh sách sản phẩm & Menu</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_admin_products.png', 'Quản lý danh sách sản phẩm & Menu')">
+            <img src="assets/img/ui_admin_products.png" alt="Quản lý danh sách sản phẩm & Menu" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_admin_products.png', 'Quản lý danh sách sản phẩm & Menu')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Quản lý tồn kho tức thời & Cảnh báo tồn thấp</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_admin_inventory.png', 'Quản lý tồn kho tức thời & Cảnh báo tồn thấp')">
+            <img src="assets/img/ui_admin_inventory.png" alt="Quản lý tồn kho tức thời & Cảnh báo tồn thấp" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_admin_inventory.png', 'Quản lý tồn kho tức thời & Cảnh báo tồn thấp')">Phóng to</button>
+        </div>
+    </div>
+    
+                </div>
+
+                <h3 class="sub-title">6.4. Giao diện Di Động / Tablet POS Nhân Viên (Staff Mobile App)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Màn hình Bán hàng POS - Chọn món</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_staff_pos_menu.png', 'Màn hình Bán hàng POS - Chọn món')">
+            <img src="assets/img/ui_staff_pos_menu.png" alt="Màn hình Bán hàng POS - Chọn món" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_staff_pos_menu.png', 'Màn hình Bán hàng POS - Chọn món')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Popup Chọn gói giờ (Mang đi / 4h / Cả ngày)</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_staff_modal_item.png', 'Popup Chọn gói giờ (Mang đi / 4h / Cả ngày)')">
+            <img src="assets/img/ui_staff_modal_item.png" alt="Popup Chọn gói giờ (Mang đi / 4h / Cả ngày)" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_staff_modal_item.png', 'Popup Chọn gói giờ (Mang đi / 4h / Cả ngày)')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Màn hình Quản lý Bàn - Bộ đếm ngược thời gian thực</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_staff_tables_countdown.png', 'Màn hình Quản lý Bàn - Bộ đếm ngược thời gian thực')">
+            <img src="assets/img/ui_staff_tables_countdown.png" alt="Màn hình Quản lý Bàn - Bộ đếm ngược thời gian thực" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_staff_tables_countdown.png', 'Màn hình Quản lý Bàn - Bộ đếm ngược thời gian thực')">Phóng to</button>
+        </div>
+    </div>
+    
+                    
+    <div class="img-card">
+        <div class="img-card-header">
+            <span>📷 Màn hình Đối soát doanh thu ca cá nhân</span>
+            <span class="pill pill-primary">Sơ đồ hệ thống</span>
+        </div>
+        <div class="img-card-body" onclick="openLightbox('assets/img/ui_staff_shift_revenue.png', 'Màn hình Đối soát doanh thu ca cá nhân')">
+            <img src="assets/img/ui_staff_shift_revenue.png" alt="Màn hình Đối soát doanh thu ca cá nhân" loading="lazy" />
+        </div>
+        <div class="img-card-footer">
+            <span>Nhấn vào hình để xem phóng to</span>
+            <button class="btn-action btn-outline" style="padding: 2px 8px; font-size: 11px;" onclick="openLightbox('assets/img/ui_staff_shift_revenue.png', 'Màn hình Đối soát doanh thu ca cá nhân')">Phóng to</button>
+        </div>
+    </div>
+    
+                </div>
+            </section>
+
+            <!-- CHƯƠNG 7 -->
+            <section class="doc-section" id="chapter7">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 7</span>
+                        <h2 class="section-title">Tích Hợp Hệ Thống & Phần Cứng Ngoại Vi</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">7.1. Tích hợp thanh toán mã QR động (VietQR / Napas 247)</h3>
+                <p>Nâng cấp chuẩn QR động thay thế hoàn toàn việc kiểm tra ảnh bill thủ công:</p>
+                <ul style="margin-left: 20px; color: var(--text-sub); margin-bottom: 16px;">
+                    <li><strong>Sinh mã QR tự động:</strong> Mỗi đơn hàng sinh mã EMVCo động chứa chính xác số tiền và mã hóa đơn trong nội dung chuyển tiền.</li>
+                    <li><strong>Webhook tự động nhận diện giao dịch:</strong> Cổng thanh toán gửi Webhook/IPN xác nhận tiền về tài khoản, phần mềm tự chuyển trạng thái "ĐÃ THANH TOÁN" và mở ngay popup chọn thẻ bàn mà không cần nhân viên nhìn điện thoại của khách.</li>
+                </ul>
+
+                <h3 class="sub-title">7.2. Tích hợp thiết bị in nhiệt (ESC/POS) & Két đựng tiền</h3>
+                <p>Giao thức in chuẩn ESC/POS qua mạng LAN (Wifi) hoặc cổng USB:</p>
+                <ul style="margin-left: 20px; color: var(--text-sub); margin-bottom: 16px;">
+                    <li><strong>Tự động bung két tiền:</strong> Gửi mã lệnh xung điện <code>ESC p 0 25 250</code> khi bấm thanh toán Tiền mặt giúp két tự bật ra, nhân viên không cần dùng chìa khóa cơ.</li>
+                    <li><strong>In hóa đơn K80 có giờ hết hạn:</strong> Thể hiện rõ tên quán Think Lặng, mã bill, <strong>Giờ bắt đầu</strong> và <strong>Giờ dự kiến hết hạn</strong> để khách chủ động theo dõi thời gian học bài.</li>
+                </ul>
+
+                <h3 class="sub-title">7.3. Định hướng tuân thủ Hóa đơn điện tử (e-Invoice)</h3>
+                <p>Sẵn sàng kết nối API với nhà cung cấp Hóa đơn điện tử khởi tạo từ máy tính tiền theo Nghị định 123/2020/NĐ-CP và Thông tư 78/2021/TT-BTC khi khách yêu cầu xuất VAT.</p>
+            </section>
+
+            <!-- CHƯƠNG 8 -->
+            <section class="doc-section" id="chapter8">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 8</span>
+                        <h2 class="section-title">Kế Hoạch & Kết Quả Kiểm Thử Hệ Thống</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">8.1. Danh mục kịch bản kiểm thử (62 Test Cases)</h3>
+                <div class="table-responsive">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Phân hệ kiểm thử</th>
+                                <th style="text-align: center;">Tổng số TC</th>
+                                <th style="text-align: center;">Passed (Đạt)</th>
+                                <th style="text-align: center;">Failed (Lỗi)</th>
+                                <th style="text-align: center;">Tỷ lệ Đạt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. Đăng nhập & Phân quyền tài khoản</td>
+                                <td style="text-align: center;">8 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">8</td>
+                                <td style="text-align: center;">0</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td>2. Bán hàng POS & Tạo đơn hàng</td>
+                                <td style="text-align: center;">10 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">10</td>
+                                <td style="text-align: center;">0</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td>3. Quản lý Bàn & Phiên đếm ngược thời gian</td>
+                                <td style="text-align: center;">10 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">8</td>
+                                <td style="text-align: center; color: var(--danger); font-weight: 700;">2</td>
+                                <td style="text-align: center;"><span class="pill pill-warning">80%</span></td>
+                            </tr>
+                            <tr>
+                                <td>4. Quản lý Tồn kho & Biến động kho</td>
+                                <td style="text-align: center;">12 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">12</td>
+                                <td style="text-align: center;">0</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td>5. Quản lý Sản phẩm & Danh mục</td>
+                                <td style="text-align: center;">8 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">8</td>
+                                <td style="text-align: center;">0</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td>6. Quản lý Đơn hàng & Hủy đơn có lý do</td>
+                                <td style="text-align: center;">6 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">6</td>
+                                <td style="text-align: center;">0</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td>7. Quản lý Nhân sự & Phê duyệt tài khoản</td>
+                                <td style="text-align: center;">8 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-weight: 700;">8</td>
+                                <td style="text-align: center;">0</td>
+                                <td style="text-align: center;"><span class="pill pill-primary">100%</span></td>
+                            </tr>
+                            <tr style="background: rgba(37, 110, 5, 0.05); font-weight: 700;">
+                                <td>TỔNG CỘNG TOÀN HỆ THỐNG</td>
+                                <td style="text-align: center;">62 test cases</td>
+                                <td style="text-align: center; color: var(--primary); font-size: 16px;">60</td>
+                                <td style="text-align: center; color: var(--danger); font-size: 16px;">2</td>
+                                <td style="text-align: center;"><span class="pill pill-primary" style="font-size: 13px;">96.8%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <h3 class="sub-title">8.2. Phân tích 2 lỗi thực tế phát hiện & Giải pháp khắc phục</h3>
+                <div class="callout callout-warning">
+                    <strong>1. Lỗi TC-TABLE-EX01: Cảnh báo phiên hết giờ tại thời điểm chuyển trạng thái</strong>
+                    <p style="margin-top: 4px; margin-bottom: 4px;">
+                        <em>Hiện tượng:</em> Khi phiên 4 giờ đếm ngược chạm mốc <code>00:00:00</code>, nếu nhân viên đang mở sẵn popup chi tiết thẻ thì giao diện không tự cập nhật sang màu đỏ "Hết giờ" mà phải đóng popup mở lại mới thấy.<br>
+                        <em>Nguyên nhân:</em> React state trong modal con chưa gắn hook lắng nghe sự kiện timeout.<br>
+                        <em>Cách khắc phục:</em> Đã bổ sung hook <code>useEffect</code> theo dõi biến đếm ngược chu kỳ 1s trong component modal con.
+                    </p>
+                </div>
+
+                <div class="callout callout-warning">
+                    <strong>2. Lỗi TC-TABLE-EX02: Thông báo khi toàn bộ 30 thẻ bàn đều đã sử dụng</strong>
+                    <p style="margin-top: 4px; margin-bottom: 4px;">
+                        <em>Hiện tượng:</em> Khi quán kín chỗ (hết 30/30 thẻ), màn hình gán thẻ sau thanh toán hiển thị danh sách trống mà không có câu thông báo giải thích rõ ràng.<br>
+                        <em>Cách khắc phục:</em> Đã bổ sung Empty State thông báo "Hiện tại quán đã kín chỗ/hết thẻ bàn" kèm gợi ý danh sách bàn dự kiến sắp hoàn tất sớm nhất.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CHƯƠNG 9 -->
+            <section class="doc-section" id="chapter9">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Chương 9</span>
+                        <h2 class="section-title">Kế Hoạch Triển Khai & Quy Trình SOP Vận Hành</h2>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">9.1. Kế hoạch di chuyển dữ liệu (Data Migration Plan)</h3>
+                <ol style="margin-left: 20px; color: var(--text-sub); line-height: 1.8;">
+                    <li><strong>Extraction (Xuất dữ liệu nguồn):</strong> Xuất danh mục sản phẩm, giá bán, tồn kho và SKU từ phần mềm cũ thành file CSV.</li>
+                    <li><strong>Transformation (Chuyển đổi):</strong> Bổ sung 3 mức giá cho từng sản phẩm: Giá mang đi, Giá gói 4h (35k), Giá gói Cả ngày (45k).</li>
+                    <li><strong>Loading (Đồng bộ hệ thống):</strong> Đồng bộ tự động lên nền tảng đám mây Supabase trước thời điểm Golive 24 giờ.</li>
+                    <li><strong>Inventory Baseline (Kiểm kê chốt số dư):</strong> Đếm kiểm kê thực tế tại quầy vào đêm trước ngày chuyển đổi để nhập tồn kho ban đầu chính xác.</li>
+                </ol>
+
+                <h3 class="sub-title">9.2. Quy trình thao tác chuẩn (SOP)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0;">
+                    <div style="background: var(--bg-surface); border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 20px;">
+                        <span class="pill pill-primary">SOP BÁN HÀNG</span>
+                        <h4 style="margin: 8px 0; font-size: 16px;">Quy Trình Order 30 Giây</h4>
+                        <p style="font-size: 13.5px; color: var(--text-sub); margin-bottom: 0;">
+                            Mở màn hình POS &rarr; Chạm chọn món &rarr; Chạm chọn gói giờ (4h / Cả ngày) &rarr; Bấm Thanh toán &rarr; Thu tiền mặt / Khách quét QR &rarr; Chạm chọn số thẻ trống giao cho khách.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--bg-surface); border: 2px solid var(--info); border-radius: var(--radius-md); padding: 20px;">
+                        <span class="pill pill-info">SOP TRẢ THẺ</span>
+                        <h4 style="margin: 8px 0; font-size: 16px;">Quy Trình Trả Thẻ 5 Giây</h4>
+                        <p style="font-size: 13.5px; color: var(--text-sub); margin-bottom: 0;">
+                            Khách mang thẻ ra quầy &rarr; Nhân viên chạm số thẻ trên màn hình bàn &rarr; Bấm "Trả thẻ" &rarr; Thẻ lập tức chuyển về màu xanh khả dụng sẵn sàng cho khách mới.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">9.3. Lộ trình phát triển sản phẩm (Product Roadmap)</h3>
+                <div class="callout callout-success">
+                    <strong>Tầm nhìn mở rộng:</strong>
+                    <ul style="margin-left: 20px; margin-top: 6px;">
+                        <li><strong>Giai đoạn 1 (Đã hoàn thành):</strong> Triển khai phiên bản ViePOS Web & Mobile tại cơ sở Think Lặng.</li>
+                        <li><strong>Giai đoạn 2:</strong> Tích hợp VietQR động tự động nhận diện thanh toán không qua upload bill.</li>
+                        <li><strong>Giai đoạn 3:</strong> Đóng gói ứng dụng di động Native (React Native / Flutter) cho quản lý theo dõi từ xa.</li>
+                        <li><strong>Giai đoạn 4:</strong> Hỗ trợ chuỗi cà phê học bài phân tán đa chi nhánh (Multi-branch Management).</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-content">
+        <div class="lightbox-header">
+            <span class="lightbox-title" id="lightboxTitle">Chi tiết sơ đồ</span>
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+        </div>
+        <div class="lightbox-img-wrap">
+            <img id="lightboxImg" src="" alt="Zoom" />
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
